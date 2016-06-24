@@ -1,3 +1,5 @@
+使用：  
+models/article.js:  
     import { REST, consts } from 'utils'
     
     export default class extends REST {
@@ -8,3 +10,22 @@
         this.path = '/article'
       }
     }
+
+actions/article.js:  
+    import actionTypes from '../consts/article'
+    import Model from '../models/article'
+    import { createAction } from 'redux-actions'
+    
+    export const postArticle = createAction(
+      actionTypes.POST_ARTICLE,
+      (options) => {
+        return new Model()
+          .addPaths(['{category}', 'news'])
+          .replace({
+            category: 123
+          })
+          .POST({
+            data: options.data
+          })
+      }
+    )
