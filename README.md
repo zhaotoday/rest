@@ -1,5 +1,6 @@
 使用：  
 models/article.js:  
+
     import { REST, consts } from 'utils'
     
     export default class extends REST {
@@ -12,6 +13,7 @@ models/article.js:
     }
 
 actions/article.js:  
+
     import actionTypes from '../consts/article'
     import Model from '../models/article'
     import { createAction } from 'redux-actions'
