@@ -1,5 +1,3 @@
-models/article.js:  
-
         import { REST, consts } from 'utils'
         
         export default class extends REST {
