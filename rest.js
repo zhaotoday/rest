@@ -13,12 +13,14 @@ export default class REST {
    * 构造函数
    * @param {string} baseURL - 接口基础地址
    * @param {string} [version] - 接口版本
-   * @param {string} path - 请求路劲
+   * @param {array} paths - 请求路劲
+   * @param {object} headers - headers
    */
-  constructor(baseURL = '', version = '', path = '') {
+  constructor({baseURL = '', version = '', paths = [], headers = {}}) {
     this.baseURL = baseURL
     this.version = version
-    this.path = path
+    this.paths = paths
+    this.headers = headers
   }
 
   /**
@@ -54,8 +56,8 @@ export default class REST {
     }
 
     return '?' + Object.keys(obj).map((key) => {
-      return `${key}=${encodeURIComponent(obj[key])}`
-    }).join('&')
+        return `${key}=${encodeURIComponent(obj[key])}`
+      }).join('&')
   }
 
   /**
@@ -63,8 +65,19 @@ export default class REST {
    * @param {array} paths - 路劲
    */
   addPaths(paths = []) {
-    if (paths.length) {
-      this.path = `${this.path}/${paths.join('/')}`
+    this.paths.concat(paths)
+
+    return this
+  }
+
+  /**
+   * 添加 headers
+   * @param {object} headers - headers
+   */
+  addHeaders(headers) {
+    this.headers = {
+      ...this.headers,
+      ...headers
     }
 
     return this
@@ -75,8 +88,10 @@ export default class REST {
    * @param {object} options - path 参数列表
    */
   replace(options = {}) {
-    Object.keys(options).forEach((key) => {
-      this.path = this.path.replace(new RegExp('{' + key + '}', 'img'), options[key])
+    Object.keys(options).forEach((optionKey) => {
+      this.paths = this.paths.map((pathItem) => {
+        return pathItem.replace(new RegExp('{' + optionKey + '}', 'img'), options[optionKey])
+      })
     })
 
     return this
