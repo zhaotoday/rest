@@ -9,18 +9,15 @@ import axios from 'axios'
  * @class REST 接口请求
  */
 export default class REST {
-  /**
-   * 构造函数
-   * @param {string} baseURL - 接口基础地址
-   * @param {string} [version] - 接口版本
-   * @param {array} paths - 请求路劲
-   * @param {object} headers - headers
-   */
-  constructor({baseURL = '', version = '', paths = [], headers = {}}) {
-    this.baseURL = baseURL
-    this.version = version
-    this.paths = paths
-    this.headers = headers
+  constructor() {
+    // 接口基础地址
+    this.baseURL = ''
+    // 接口版本
+    this.version = ''
+    // 请求路劲
+    this.paths = []
+    // headers
+    this.headers = {}
   }
 
   /**
@@ -30,7 +27,7 @@ export default class REST {
    * @return {object}
    */
   _request(method = 'GET', options = {}) {
-    let url = this.version ? `/${this.version}${this.path}` : this.path
+    let url = this.version ? `/${this.version}/${this.paths.join('/')}` : this.paths.join('/')
 
     // GET
     if (options.params) {
