@@ -44,8 +44,8 @@ export default class REST {
   }
 
   /**
-   * 对象转 url
-   * @param {object} obj - 带转化对象
+   * 对象转 URL
+   * @param {object} obj - 待转化对象
    * @return {string}
    */
   _objToUrl(obj) {
