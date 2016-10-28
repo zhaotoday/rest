@@ -9,6 +9,9 @@ import axios from 'axios'
  * @class REST 接口请求
  */
 export default class REST {
+  /**
+   * 构造函数
+   */
   constructor() {
     // 接口基础地址
     this.baseURL = ''
@@ -28,6 +31,7 @@ export default class REST {
    */
   _request(method = 'GET', options = {}) {
     let url = this.version ? `/${this.version}/${this.paths.join('/')}` : this.paths.join('/')
+    const headers = Object.keys(this.headers) ? {headers: this.headers} : {}
 
     // GET
     if (options.params) {
@@ -35,6 +39,7 @@ export default class REST {
     }
 
     return axios({
+      ...headers,
       method: method,
       baseURL: this.baseURL,
       url: url,
@@ -62,7 +67,7 @@ export default class REST {
    * @param {array} paths - 路劲
    */
   addPaths(paths = []) {
-    this.paths.concat(paths)
+    this.paths = this.paths.concat(paths)
 
     return this
   }
