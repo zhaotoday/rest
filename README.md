@@ -11,7 +11,7 @@ export default class extends REST {
     super()
     this.baseURL = consts.API_URL
     this.version = 'v1.0'
-    this.paths = ['articles']
+    this.path = 'articles'
     this.headers = {
       Authorization: 'abc'
     }
@@ -46,7 +46,7 @@ export const postArticleAuthor = createAction(
   actionTypes.POST_ARTICLE_AUTHOR,
   (options) => {
     return new Model()
-      .addPaths(['{article_id}/authors'])
+      .addPath('{article_id}/authors')
       .replace({
         article_id: options.article_id
       })
