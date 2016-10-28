@@ -1,35 +1,75 @@
 ## 使用  
-models/article.js:  
+
+redux/models/articles.js:
+
 ```js
-import { REST, consts } from 'utils'
+import REST from 'utils/rest'
+import consts from 'utils/const'
 
 export default class extends REST {
   constructor() {
     super()
     this.baseURL = consts.API_URL
     this.version = 'v1.0'
-    this.path = '/article'
+    this.paths = ['articles']
+    this.headers = {
+      Authorization: 'abc'
+    }
   }
 }
 ```
 
-actions/article.js:  
-```js
-import actionTypes from '../consts/article'
-import Model from '../models/article'
-import { createAction } from 'redux-actions'
+redux/actions/articles.js:
 
-export const postArticle = createAction(
-  actionTypes.POST_ARTICLE,
+```js
+import actionTypes from '../consts/articles'
+import Model from '../models/articles'
+import createAction from 'redux-actions/lib/createAction'
+
+/**
+ * 获取文章列表
+ */
+export const getArticles = createAction(
+  actionTypes.GET_ARTICLES,
   (options) => {
     return new Model()
-      .addPaths(['{category}', 'news'])
+      .GET({
+        params: options.params
+      })
+  }
+)
+
+/**
+ * 给文章新增一个作者
+ */
+export const postArticleAuthor = createAction(
+  actionTypes.POST_ARTICLE_AUTHOR,
+  (options) => {
+    return new Model()
+      .addPaths(['{article_id}/authors'])
       .replace({
-        category: 123
+        article_id: options.article_id
       })
       .POST({
         data: options.data
       })
   }
 )
+```
+
+app/index.js:
+
+```js
+this.props.getArticles({
+  params: {
+    title: 'the title'
+  }
+})
+
+this.props.postArticleAuthor({
+  article_id: 123,
+  data: {
+    title: 'the title'
+  }
+})
 ```
