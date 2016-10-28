@@ -1,6 +1,6 @@
 ## 使用  
 
-redux/models/articles.js:
+### redux/models/articles.js:
 
 ```js
 import REST from 'utils/rest'
@@ -19,7 +19,7 @@ export default class extends REST {
 }
 ```
 
-redux/actions/articles.js:
+### redux/actions/articles.js:
 
 ```js
 import actionTypes from '../consts/articles'
@@ -57,7 +57,7 @@ export const postArticleAuthor = createAction(
 )
 ```
 
-app/index.js:
+### app/index.js:
 
 ```js
 this.props.getArticles({
