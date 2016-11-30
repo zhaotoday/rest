@@ -13,7 +13,7 @@ export default class extends REST {
     this.version = 'v1.0'
     this.path = 'articles'
     this.headers = {
-      Authorization: 'abc'
+      authorization: 'abc'
     }
   }
 }
@@ -48,7 +48,7 @@ export const postArticleAuthor = createAction(
     return new Model()
       .addPath('{article_id}/authors')
       .replace({
-        article_id: options.article_id
+        'article_id': options['article_id']
       })
       .POST({
         data: options.data
@@ -67,7 +67,7 @@ this.props.getArticles({
 })
 
 this.props.postArticleAuthor({
-  article_id: 123,
+  'article_id': 123,
   data: {
     title: 'the title'
   }
