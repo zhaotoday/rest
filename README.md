@@ -33,31 +33,39 @@ new Model().GET({
   }
 })
 ```
-// 获取 ID 为 1 的文章详情
-// GET /articles/1
+
+获取 ID 为 1 的文章详情
+> GET /articles/1
+```js
 new Model().GET({
   uri: 1
 })
+```
 
-// 获取 ID 为 1 的文章的所有作者列表
-// GET /articles/1/authors
+获取 ID 为 1 的文章的所有作者列表
+> GET /articles/1/authors
+```js
 new Model()
   .addPath('{article_id}/authors')
   .replace({
     'article_id': 1
   })
   .GET()
+```
 
-// 获取 ID 为 1 的文章的 ID 为 2 的作者详情
-// GET /articles/1/authors/2
+获取 ID 为 1 的文章的 ID 为 2 的作者详情
+> GET /articles/1/authors/2
+```js
 new Model()
   .addPath('1/authors')
   .GET({
     uri: 2
   })
+```
 
-// 新增 1 篇文章
-// POST /articles
+新增 1 篇文章
+> POST /articles
+```js
 new Model()
   .POST({
     data: {
@@ -65,9 +73,11 @@ new Model()
       content: 'How to use Vue.'
     }
   })
+```
 
-// 编辑 ID 为 1 的文章
-// PUT /articles/1
+编辑 ID 为 1 的文章
+> PUT /articles/1
+```js
 new Model()
   .PUT({
     uri: 1,
@@ -76,9 +86,12 @@ new Model()
       content: 'How to use jQuery'
     }
   })
+```
 
-// 删除 ID 为 1 的文章
-// DELETE /articles/1
+删除 ID 为 1 的文章
+> DELETE /articles/1
+```js
 new Model().DELETE({
   uri: 1
 })
+```
