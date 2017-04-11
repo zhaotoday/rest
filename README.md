@@ -1,5 +1,5 @@
 ## 介绍
-基于 axios 的 RESTful HTTP 简单封装，提供更人性化的 API。
+基于 axios 的 ajax 简单封装，遵循 RESTful 规范，提供更人性化的 API。
 
 ## 下载
 ```bash
