@@ -66,26 +66,24 @@ new Model()
 新增 1 篇文章
 > POST /articles
 ```js
-new Model()
-  .POST({
-    data: {
-      title: 'Vue',
-      content: 'How to use Vue.'
-    }
-  })
+new Model().POST({
+  data: {
+    title: 'Vue',
+    content: 'How to use Vue.'
+  }
+})
 ```
 
 编辑 ID 为 1 的文章
 > PUT /articles/1
 ```js
-new Model()
-  .PUT({
-    uri: 1,
-    data: {
-      title: 'jQuery',
-      content: 'How to use jQuery'
-    }
-  })
+new Model().PUT({
+  uri: 1,
+  data: {
+    title: 'jQuery',
+    content: 'How to use jQuery'
+  }
+})
 ```
 
 删除 ID 为 1 的文章
