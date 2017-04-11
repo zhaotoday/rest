@@ -93,3 +93,12 @@ new Model().DELETE({
   uri: 1
 })
 ```
+
+处理请求结果
+```js
+new Model().GET().then((res) => {
+  console.log(res)
+}).catch((err) => {
+  console.log(err)
+})
+```
